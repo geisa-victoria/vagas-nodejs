@@ -1,6 +1,6 @@
 
 let collectionJobs = [];
-// const tokenValidator = require('../../config/security/tokenValidator');
+const tokenValidator = require('../../config/security/tokenValidator');
 
 module.exports = routes => { 
     //importa o db passando o path do firebaseConfig a partir do routes
@@ -20,7 +20,7 @@ module.exports = routes => {
         res.send('Ok');
     });
 
-    routes.get('/jobs/:id', /*tokenValidator,*/ async (req, res) => {
+    routes.get('/jobs/:id', tokenValidator, async (req, res) => {
         try {
             await db.doc(req.params.id).get();
 
@@ -72,7 +72,7 @@ module.exports = routes => {
     //     }
     // })
 
-    routes.get('/jobs',  /*tokenValidator,*/ async (req, res) => {
+    routes.get('/jobs',  tokenValidator, async (req, res) => {
         try {
             //vai esperar a busca terminar para exibir para o usuário
             let docs = await db.get();

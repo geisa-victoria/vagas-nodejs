@@ -12,7 +12,7 @@ const validateToken = (req, res, next)  => {
 
     }
     //middleware to verify if token is valid
-     jwt.verify(token.split(' '[1]), secretKey, async (error, decoded) => {
+     jwt.verify(token.split(' ')[1], secretKey, async (error, decoded) => {
         if(error) {
             return res.status(500).send({ auth: false, message: 'Failed to decode'})
         }
